@@ -9,13 +9,39 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        HStack {
+            Button(action: {}) {
+                Text("Prüfungen")
+            }
+            .foregroundStyle(Color.primary)
+            .padding(.leading)
+            
+            
+            Button(action: {}) {
+                Text("Themen")
+            }
+            .foregroundStyle(Color.primary)
+            .padding(.leading)
+            
+            Spacer()
+            
+            Button(action: {}) {
+                Text("Blog")
+            }
+            .foregroundStyle(Color.primary)
+            .padding(.trailing)
         }
-        .padding()
+        .padding(.bottom)
+        .background(Color.primary.opacity(0.1))
+        
+        
+        VStack {
+            Text("Nächste Prüfung:")
+                .font(.title)
+            
+            Text("Fachinformatiker | Teil 1")
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
