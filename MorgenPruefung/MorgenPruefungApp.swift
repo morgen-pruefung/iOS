@@ -11,7 +11,9 @@ import SwiftUI
 struct MorgenPruefungApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ExamsView()
+            }
         }
     }
 }

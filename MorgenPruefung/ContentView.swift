@@ -8,38 +8,48 @@
 import SwiftUI
 
 struct ContentView: View {
+    static var page = "pruefungen"
+    
     var body: some View {
         HStack {
-            Button(action: {}) {
+            Button(action: {
+                ContentView.page = "pruefungen"
+            }) {
                 Text("Prüfungen")
+                    .bold()
             }
             .foregroundStyle(Color.primary)
             .padding(.leading)
             
             
-            Button(action: {}) {
+            Button(action: {
+                ContentView.page = "themen"
+            }) {
                 Text("Themen")
+                    .bold()
             }
             .foregroundStyle(Color.primary)
             .padding(.leading)
             
             Spacer()
             
-            Button(action: {}) {
+            Button(action: {
+                ContentView.page = "blog"
+            }) {
                 Text("Blog")
+                    .bold()
             }
             .foregroundStyle(Color.primary)
             .padding(.trailing)
         }
         .padding(.bottom)
         .background(Color.primary.opacity(0.1))
-        
-        
+               
         VStack {
-            Text("Nächste Prüfung:")
+            Text("Seite:")
                 .font(.title)
             
-            Text("Fachinformatiker | Teil 1")
+            Text(ContentView.page)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
