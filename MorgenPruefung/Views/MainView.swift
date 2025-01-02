@@ -11,34 +11,57 @@ struct MainView: View {
     var body: some View {
         ScrollView {
             VStack {
-                HStack {
-                    NavigationLink(destination: ExamsView()) {
-                        Text("Prüfungen")
-                            .padding(8)
-                            .background(.regularMaterial, ignoresSafeAreaEdges: [])
-                            .clipShape(Capsule())
-                    }
-                    .padding(.leading)
+                ZStack {
+                    MeshGradient(width: 2, height: 2, points: [
+                        [0, 0], [1, 0],
+                        [0, 1], [1, 1]
+                    ], colors: [.black, .green, .green, .black])
+                    .frame(height: 200)
                     
-                    NavigationLink(destination: TopicsView()) {
-                        Text("Themen")
-                            .padding(8)
-                            .background(.regularMaterial, ignoresSafeAreaEdges: [])
-                            .clipShape(Capsule())
+                    VStack {
+                        Text("Morgen-Pruefung.de")
+                            .foregroundStyle(Color.white)
+                            .font(.system(size: 30))
+                            .bold()
+                            .padding(.top, 50)
+                            .padding(.bottom)
+                        
+                        HStack {
+                            NavigationLink(destination: ExamsView()) {
+                                Text("Prüfungen")
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(Color.primary)
+                                    .bold()
+                                    .padding(8)
+                                    .frame(width: 120)
+                                    .background(.regularMaterial, ignoresSafeAreaEdges: [])
+                                    .clipShape(Capsule())
+                            }
+                            NavigationLink(destination: TopicsView()) {
+                                Text("Themen")
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(Color.primary)
+                                    .bold()
+                                    .padding(8)
+                                    .frame(width: 120)
+                                    .background(.regularMaterial, ignoresSafeAreaEdges: [])
+                                    .clipShape(Capsule())
+                            }
+
+                            NavigationLink(destination: BlogView()) {
+                                Text("Blog")
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(Color.primary)
+                                    .bold()
+                                    .padding(8)
+                                    .frame(width: 120)
+                                    .background(.regularMaterial, ignoresSafeAreaEdges: [])
+                                    .clipShape(Capsule())
+                            }
+                        }
                     }
-                    
-                    NavigationLink(destination: BlogView()) {
-                        Text("Blog")
-                            .padding(8)
-                            .background(.regularMaterial, ignoresSafeAreaEdges: [])
-                            .clipShape(Capsule())
-                    }
-                    
-                    Spacer()
                 }
-                
-                Divider()
-                    .padding(.vertical)
+                .padding(.bottom, 50)
                 
                 Text("Anstehende Prüfungen")
                     .font(.title2)
@@ -52,6 +75,7 @@ struct MainView: View {
                                 
                                 Text("Noch 5 Tage und 3 Stunden")
                                     .font(.headline)
+                                    .glow()
                             }
                             .padding(.horizontal)
                             .padding(.vertical, 30)
@@ -59,6 +83,7 @@ struct MainView: View {
                             .background(Color.red.opacity(0.15))
                             .cornerRadius(16)
                         }
+                    
                         .padding()
                         
                         ForEach(0..<5) { _ in
@@ -111,8 +136,28 @@ struct MainView: View {
                     }
                 }
             }
-            .navigationTitle("Morgen Prüfung")
         }
+        .ignoresSafeArea()
+    }
+        
+}
+
+struct Glow: ViewModifier {
+    @State var isGlowing: Bool = false
+    func body(content: Content) -> some View {
+        ZStack {
+            content
+                .blur(radius: isGlowing ? 10 : 0)
+                .animation(.easeOut(duration: 1).repeatForever(), value: isGlowing)
+                .onAppear() { isGlowing.toggle() }
+            content
+        }
+    }
+}
+
+extension View {
+    public func glow() -> some View {
+        modifier(Glow())
     }
 }
 
