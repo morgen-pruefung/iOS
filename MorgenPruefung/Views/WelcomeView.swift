@@ -57,9 +57,10 @@ struct WelcomeView: View {
                         }
                         .padding()
                         
-                        Button("Weiter als Gast") {
-                            
+                        NavigationLink(destination: MainView()) {
+                            Text("Weiter als Gast")
                         }
+                        
                     }
                     .padding()
 
@@ -72,5 +73,7 @@ struct WelcomeView: View {
 }
 
 #Preview {
-    WelcomeView()
+    NavigationStack {
+        WelcomeView()
+    }
 }

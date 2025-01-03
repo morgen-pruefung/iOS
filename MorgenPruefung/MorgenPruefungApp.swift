@@ -12,7 +12,7 @@ struct MorgenPruefungApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                WelcomeView()
+                MainView()
             }
         }
     }
