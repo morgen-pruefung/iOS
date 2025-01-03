@@ -9,24 +9,23 @@ import SwiftUI
 
 struct WelcomeView: View {
     @State private var isAnimating = false
+    @Environment(\.colorScheme) var colorScheme
         
         var body: some View {
             ZStack {
-                MeshGradient(width: 3, height: 3, points: [
-                    [0.0, 0.0], [0.5, 0], [1.0, 0.0],
-                    [0.0, 0.5], [isAnimating ? 0.1 : 0.9, 0.5], [1.0, 0.5],
-                    [0.0, 1.0], [0.5, 1.0], [1.0, 1.0]
+                MeshGradient(width: 2, height: 2, points: [
+                    [0, 0], [1, 0],
+                    [0, 1], [1, 1]
                 ], colors: [
-                    .red, .purple, .indigo,
-                    .orange, isAnimating ? .white : .brown, .blue,
-                    .yellow, .green, .mint
+                    isAnimating ? .black : .blue, isAnimating ? .red : .black,
+                    isAnimating ? .orange : .black, isAnimating ? .black : .green
                 ],
                              
                     smoothsColors: true,
                     colorSpace: .perceptual
                 )
                 .onAppear {
-                    withAnimation(.easeInOut(duration: 5).repeatForever(autoreverses: true)) {
+                    withAnimation(.smooth(duration: 5).repeatForever(autoreverses: true)) {
                         isAnimating.toggle()
                     }
                 }
