@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading) {
                 ZStack {
                     MeshGradient(width: 2, height: 2, points: [
                         [0, 0], [1, 0],
@@ -64,21 +64,27 @@ struct MainView: View {
                 .padding(.bottom, 50)
                 
                 Text("Anstehende Prüfungen")
-                    .font(.title2)
+                    .font(.title)
+                    .bold()
+                    .padding(.leading)
                 
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack() {
                         NavigationLink(destination: ExamDetailView(examName: "Fachinformatiker AP1")) {
                             VStack {
-                                Text("Fachinformatiker | Teil 1")
-                                    .font(.title)
+                                Text("Abschlussprüfung Teil 1")
+                                    .font(.title2)
+                                
+                                Text("Alle Fachinformatiker")
+                                    .font(.caption)
+                                    .padding(.bottom, 4)
                                 
                                 Text("Noch 5 Tage und 3 Stunden")
                                     .font(.headline)
                                     .glow()
                             }
                             .padding(.horizontal)
-                            .padding(.vertical, 30)
+                            .padding(.vertical, 10)
                             .foregroundColor(Color.red)
                             .background(Color.red.opacity(0.15))
                             .cornerRadius(16)
@@ -89,14 +95,19 @@ struct MainView: View {
                         ForEach(0..<5) { _ in
                             NavigationLink(destination: ExamDetailView(examName: "Fachinformatiker AP1")) {
                                 VStack {
-                                    Text("Fachinformatiker | Teil 2")
-                                        .font(.title)
+                                    Text("Abschlussprüfung Teil 2")
+                                        .font(.title2)
+                                    
+                                    Text("Fachinformatiker Anwendungsentwicklung")
+                                        .font(.caption)
+                                        .padding(.bottom, 4)
                                     
                                     Text("Noch 5 Tage und 3 Stunden")
                                         .font(.headline)
+                                        .glow()
                                 }
                                 .padding(.horizontal)
-                                .padding(.vertical, 30)
+                                .padding(.vertical, 10)
                                 .foregroundColor(Color.primary)
                                 .background(Color.secondary.opacity(0.15))
                                 .cornerRadius(16)
@@ -110,7 +121,9 @@ struct MainView: View {
                     .padding(.vertical)
                 
                 Text("Beliebte Themen")
-                    .font(.title2)
+                    .font(.title)
+                    .bold()
+                    .padding(.leading)
                 
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack() {
@@ -118,14 +131,21 @@ struct MainView: View {
                             NavigationLink(destination: TopicDetailView(topicName: "Grundlagen SQL")) {
                                 VStack {
                                     Text("Grundlagen SQL")
-                                        .font(.title)
+                                        .font(.title2)
                                     
                                     Text("Datenbanken")
+                                        .foregroundStyle(.secondary)
+                                        .font(.caption)
+                                        .padding(.bottom, 2)
                                     
                                     Text("Basic SELECT, INSERT, UPDATE und DELETE Anweisungen")
+                                        .foregroundStyle(.secondary)
+                                        .font(.subheadline)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .lineLimit(2)
                                 }
                                 .padding(.horizontal)
-                                .padding(.vertical, 30)
+                                .padding(.vertical, 10)
                                 .foregroundColor(Color.primary)
                                 .background(Color.secondary.opacity(0.15))
                                 .cornerRadius(16)

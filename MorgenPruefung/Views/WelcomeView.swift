@@ -25,7 +25,7 @@ struct WelcomeView: View {
                     colorSpace: .perceptual
                 )
                 .onAppear {
-                    withAnimation(.smooth(duration: 5).repeatForever(autoreverses: true)) {
+                    withAnimation(.smooth(duration: 2).repeatForever(autoreverses: true)) {
                         isAnimating.toggle()
                     }
                 }
